@@ -4,6 +4,7 @@ const connectDB = require('./config/DB');
 const authRoutes = require("./routes/auth.routes");
 const fournisseurRoutes = require("./routes/fournisseur.routes");
 const factureRoutes = require("./routes/facture.routes");
+const paymentRoutes = require("./routes/payment.routes");
 
 dotenv.config();
 
@@ -18,6 +19,8 @@ app.use("/api/auth", authRoutes);
 app.use("./api/fournisseurs", fournisseurRoutes);
 
 app.use("/api/factures", factureRoutes);
+
+app.use("/api", paymentRoutes);
 
 app.get("/", (req, res) => {
   res.send("WELCOME Smart Invoice API! 🚀");

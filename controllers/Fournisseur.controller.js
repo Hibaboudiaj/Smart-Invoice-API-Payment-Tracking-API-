@@ -4,7 +4,7 @@ const Fournisseur = require("../models/Fournisseur");
 const Fournisseur = require("../models/Fournisseur");
 const Fournisseur = require("../models/Fournisseur");
 
-const CreateFournisseur = async (req, res) => {
+const createFournisseur = async (req, res) => {
     try {
         const {name, contact} = req.body;
 
@@ -63,3 +63,11 @@ const deleteFournisseur = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 }
+
+module.exports = {
+    createFournisseur, 
+    getFournisseurs, 
+    getFournisseur, 
+    updateFournisseur, 
+    deleteFournisseur
+};

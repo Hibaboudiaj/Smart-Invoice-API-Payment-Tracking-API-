@@ -32,6 +32,25 @@ const getFactures = async (req, res) => {
 };
 
 
+const getFacture = async (req, res) => {
+  try {
+    const facture = await Facture.findOne({
+      _id: req.params.id,
+      user: req.user._id,
+    }).populate("fournisseur", "name");
+
+    if (!facture) {
+      return res.status(404).json({message: "Facture not found",});
+    }
+
+    res.json(facture);
+
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
 const updateFacture = async (req, res) => {
   try {
     const facture = await Facture.findOne({_id: req.params.id, user: req.user._id,});
@@ -83,6 +102,7 @@ const deleteFacture = async (req, res) => {
 module.exports = {
     createFacture,
     getFactures,
+    getFacture,
     updateFacture,
     deleteFacture,
 };

@@ -63,6 +63,21 @@ This API is designed to help freelancers and companies manage their financial op
 
 ---
 
-## 🔐 Authentication
+## 🔐 Authentication (JWT)
 
-Authorization:
+The API uses JWT for authentication.
+
+Authorization header:
+Authorization: Bearer <token>
+
+## 🛠️ Tech Stack
+
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT
+
+## 👨‍💻 Author
+
+Hiba Boudiaj

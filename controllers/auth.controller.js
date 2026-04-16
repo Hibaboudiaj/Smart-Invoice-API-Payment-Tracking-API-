@@ -5,13 +5,13 @@ const User = require("../models/User");
 const register = async (req, res) => {
   try {
     const { name, email, password } = req.body;
-
+    // ila l9a user f db kayraj3 objet kaml dyalo or null
     const userExist = await User.findOne({ email });
-
     if (userExist) {
       return res.status(400).json({message: "User already exists",});
     }
-
+    //10 salt round : 9owat tachefir
+    //.hash(): method tab3a l bycrypt kadir tachefir
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const createUser = await User.create({
@@ -44,20 +44,21 @@ const login = async (req, res) => {
     }
 
     const isMatch = await bcrypt.compare(password, checkUser.password);
-
+    //return true or false
     if (!isMatch) {
       return res.status(400).json({message: "Invalid password",});
     }
-
+    //jwt: tari9a amna bach twaled token
+    // .sign(): katwaled token
     const token = jwt.sign(
-      {
-        id: checkUser._id,
+      {//payload les info li f token
+        id: checkUser._id, 
         role: checkUser.role,
       },
       process.env.JWT_SECRET,
       { expiresIn: "30d" }
     );
-
+    //kayraj3 token o les info dyl user
     res.json({message: "Login successful", token,
       user: {
         _id: checkUser._id,

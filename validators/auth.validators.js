@@ -1,4 +1,5 @@
 const Joi = require("joi");
+//joi:liberary f node.js katverfiy si7at lbayant li katji mn user
 
 const registerSchema = Joi.object({
   
